@@ -1,10 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { PeriodicElement } from 'src/app/views/home/home.component';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { Person } from 'src/app/models/Person';
 
 
 @Component({
@@ -14,17 +10,17 @@ import { PeriodicElement } from 'src/app/views/home/home.component';
 })
 export class ElementDialogComponent implements OnInit {
 
-  element!: PeriodicElement
+  element!: Person
   isChange!: boolean;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) 
-    public data: PeriodicElement,
+    public data: Person,
     public dialogRef: MatDialogRef<ElementDialogComponent>,
   ) {}
 
   ngOnInit(): void {
-    if(this.data.position != null) {
+    if(this.data.id != null) {
       this.isChange = true
     } else {
       this.isChange = false

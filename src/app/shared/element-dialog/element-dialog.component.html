@@ -1,29 +1,33 @@
-<h1 *ngIf="!isChange" mat-dialog-title>Insert Element</h1>
-<h1 *ngIf="isChange" mat-dialog-title>Edit Element</h1>
+<h1 *ngIf="isChange" mat-dialog-title>Inserir Pessoa</h1>
+<h1 *ngIf="!isChange" mat-dialog-title>Editar Pessoa</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content #caixa>
   <mat-form-field>
-    <mat-label>Position</mat-label>
-    <input matInput [(ngModel)]="data.position">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="data.firstName">
   </mat-form-field>
-
+  <br>
   <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="data.name">
+    <mat-label>Sobrenome</mat-label>
+    <input matInput [(ngModel)]="data.lastName">
   </mat-form-field>
-
+  <br>
   <mat-form-field>
-    <mat-label>Weight</mat-label>
-    <input matInput [(ngModel)]="data.weight">
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Symbol</mat-label>
-    <input matInput [(ngModel)]="data.symbol">
+    <mat-label>Data de Nascimento</mat-label>
+    <input matInput [matDatepicker]="datepicker" [(ngModel)]="data.birthDate">
+    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+    <mat-datepicker-actions>
+      <button mat-button matDatepickerCancel>Cancelar</button>
+      <button mat-raised-button color="primary" matDatepickerApply>Selecionar</button>
+    </mat-datepicker-actions>
+  </mat-datepicker>
   </mat-form-field>
 </div>
+
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button *ngIf="!isChange" [mat-dialog-close]="data" cdkFocusInitial>Insert</button>
-  <button mat-button *ngIf="isChange" [mat-dialog-close]="data" cdkFocusInitial>Edit</button>
+  <button mat-button *ngIf="isChange" [mat-dialog-close]="data" cdkFocusInitial>Insert</button>
+  <button mat-button *ngIf="!isChange" [mat-dialog-close]="data" cdkFocusInitial>Edit</button>
 </div>
